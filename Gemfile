@@ -87,3 +87,5 @@ gem 'rubocop', require: false
 gem 'rubocop-rails', '~> 2.21', '>= 2.21.2'
 
 gem 'rubocop-capybara', '~> 2.19'
+
+gem "rubocop-discourse"
