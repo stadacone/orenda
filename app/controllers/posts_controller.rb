@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# A default link post to Orenda
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 

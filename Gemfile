@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '3.2.2'
@@ -81,3 +83,7 @@ gem 'bundler-audit', '~> 0.9.1'
 gem 'brakeman'
 
 gem 'rubocop', require: false
+
+gem 'rubocop-rails', '~> 2.21', '>= 2.21.2'
+
+gem 'rubocop-capybara', '~> 2.19'
