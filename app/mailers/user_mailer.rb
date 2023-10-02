@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UserMailer < ApplicationMailer
   default from: User::MAILER_FROM_EMAIL
 

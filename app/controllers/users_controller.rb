@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UsersController < ApplicationController
   before_action :redirect_if_authenticated, only: [:create, :new]
   before_action :authenticate_user!, only: [:edit, :destroy, :update]
@@ -51,7 +52,7 @@ class UsersController < ApplicationController
   private
 
   def create_user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 
   def update_user_params

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # app/controllers/confirmations_controller.rb
 class ConfirmationsController < ApplicationController
 

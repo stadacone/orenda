@@ -12,7 +12,10 @@
   </head>
 
   <body>
-    <header>Orenda</header>
+    <header>
+      Orenda
+      <%= Current.user.username %>
+    </header>
     <main>
       <%= yield %>
     </main>

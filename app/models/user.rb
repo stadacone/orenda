@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 class User < ApplicationRecord
   CONFIRMATION_TOKEN_EXPIRATION = 10.minutes
   PASSWORD_RESET_TOKEN_EXPIRATION = 10.minutes
-  MAILER_FROM_EMAIL = "no-reply@stadacone.io"
+  MAILER_FROM_EMAIL = "no-reply@example.com"
 
   attr_accessor :current_password
 
@@ -12,8 +13,8 @@ class User < ApplicationRecord
   before_save :downcase_unconfirmed_email
 
   validates :username, obscenity: true, presence: true, uniqueness: true
-  validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true
-  validates :unconfirmed_email, format: {with: URI::MailTo::EMAIL_REGEXP, allow_blank: true}
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true
+  validates :unconfirmed_email, format: { with: URI::MailTo::EMAIL_REGEXP, allow_blank: true }
 
   def confirm!
     if unconfirmed_or_reconfirming?

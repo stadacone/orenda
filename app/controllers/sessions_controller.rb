@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # app/controllers/sessions_controller.rb
 class SessionsController < ApplicationController
   before_action :redirect_if_authenticated, only: [:create, :new]
