@@ -46,6 +46,8 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  config.action_mailer.default_url_options = { host: "stadac.one" }
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
@@ -63,6 +65,4 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
-
-  config.action_mailer.default_url_options = { host: "example.com" }
 end

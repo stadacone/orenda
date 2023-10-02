@@ -2,7 +2,7 @@
 class User < ApplicationRecord
   CONFIRMATION_TOKEN_EXPIRATION = 10.minutes
   PASSWORD_RESET_TOKEN_EXPIRATION = 10.minutes
-  MAILER_FROM_EMAIL = "no-reply@example.com"
+  MAILER_FROM_EMAIL = "no-reply@stadac.one"
 
   attr_accessor :current_password
 
