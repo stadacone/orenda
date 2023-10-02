@@ -17,7 +17,7 @@ class ConfirmationsController < ApplicationController
     @user = User.find_signed(params[:confirmation_token], purpose: :confirm_email)
 
     if @user.blank?
-      return redirect_to new_confirmation_path, alert: "Invalid token."
+      redirect_to new_confirmation_path, alert: "Invalid token." and return
     end
 
     if @user.unconfirmed_or_reconfirming?

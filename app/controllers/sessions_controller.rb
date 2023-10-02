@@ -1,19 +1,19 @@
 # frozen_string_literal: true
-# app/controllers/sessions_controller.rb
+
 class SessionsController < ApplicationController
   before_action :redirect_if_authenticated, only: [:create, :new]
   before_action :authenticate_user!, only: [:destroy]
 
   def create
-    @user = User.authenticate_by(email: params[:user][:email].downcase, password: params[:user][:password])
+    @user = User.authenticate_by(username: params[:user][:username], password: params[:user][:password])
 
     unless @user
-      flash.now[:alert] = "Incorrect email or password."
+      flash.now[:alert] = "Incorrect username or password."
       render :new, status: :unprocessable_entity and return
     end
 
-    if @user.unconfirmed?
-      redirect_to new_confirmation_path, alert: "Incorrect email or password."
+    if @user&.unconfirmed?
+      redirect_to new_confirmation_path, alert: "Incorrect username or password."
     else
       after_login_path = session[:user_return_to] || root_path
       active_session = login @user
