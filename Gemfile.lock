@@ -78,6 +78,7 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     base64 (0.1.1)
+    bcrypt (3.1.19)
     bigdecimal (3.1.4)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -150,6 +151,7 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
+    obscenity (1.0.2)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
@@ -288,6 +290,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   brakeman
   bundler-audit (~> 0.9.1)
@@ -297,6 +300,7 @@ DEPENDENCIES
   error_highlight (>= 0.4.0)
   jbuilder
   jsbundling-rails
+  obscenity
   puma (>= 5.0)
   rails (~> 7.1.0.rc1)
   redis (~> 5.0)
