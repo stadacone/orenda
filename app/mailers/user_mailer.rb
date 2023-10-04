@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 class UserMailer < ApplicationMailer
   default from: User::MAILER_FROM_EMAIL
-  ActionMailer::Base.perform_deliveries = true
 
   def confirmation(user, confirmation_token)
     @user = user
