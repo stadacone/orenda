@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.fluid.classless.min.css">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "/assets/application.js", "data-turbo-track": "reload", defer: true %>
   </head>
@@ -14,25 +14,14 @@
   <body>
     <header>
       <nav>
-        <ul>
-          <li><strong>Orenda</strong></li>
-        </ul>
-        <ul>
-          <% if Current.user.present? %>
-            <details role="list">
-              <summary aria-haspopup="listbox" role="button">
-                <%= Current.user.username %>
-              </summary>
-              <ul role="listbox">
-                <li><%= link_to "Account", account_path %></li>
-                <li><%= link_to "Logout", logout_path, data: { turbo_method: :delete } %></li>
-              </ul>
-            </details>
-          <% else %>
-            <li><%= link_to "Login", login_path %></li>
-            <li><%= link_to "Sign up", sign_up_path %></li>
-          <% end %>
-        </ul>
+        <% if Current.user.present? %>
+          <%= link_to "Account", account_path %>
+          <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
+        <% else %>
+          <%= link_to "Login", login_path %>
+          <%= link_to "Sign up", sign_up_path %>
+        <% end %>
+        <h2>Orenda</h2>
       </nav>
     </header>
     <main>

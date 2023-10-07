@@ -21,6 +21,7 @@ class ConfirmationsController < ApplicationController
     end
 
     if @user.unconfirmed_or_reconfirming?
+      @user.confirm!
       login @user
       redirect_to root_path, notice: "Your account has been confirmed."
     else

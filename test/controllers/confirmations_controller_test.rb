@@ -2,7 +2,42 @@
 require "test_helper"
 
 class ConfirmationsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test "confirming with a valid token redirects to root page" do
+    thomas = users(:thomas)
+    confirmation_token = thomas.generate_confirmation_token
+
+    get edit_confirmation_url(confirmation_token)
+    thomas.reload
+
+    assert_redirected_to root_url
+    assert_equal thomas.confirmed?, true
+  end
+
+  test "confirming with an expired token redirects to new confirmation page" do
+    thomas = users(:thomas)
+    confirmation_token = thomas.generate_confirmation_token
+    travel 11.minutes
+
+    get edit_confirmation_url(confirmation_token)
+    thomas.reload
+
+    assert_redirected_to new_confirmation_url
+    assert_equal thomas.confirmed?, false
+  end
+
+  test "confirming a confirmed user redirects to new confirmation page" do
+    thomas = users(:thomas)
+    confirmation_token = thomas.generate_confirmation_token
+
+    get edit_confirmation_url(confirmation_token)
+    thomas.reload
+
+    assert_redirected_to root_url
+    assert_equal thomas.confirmed?, true
+
+    confirmation_token = thomas.generate_confirmation_token
+    get edit_confirmation_url(confirmation_token)
+
+    assert_redirected_to new_confirmation_path
+  end
 end
