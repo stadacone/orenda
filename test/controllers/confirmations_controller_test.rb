@@ -10,7 +10,7 @@ class ConfirmationsControllerTest < ActionDispatch::IntegrationTest
     thomas.reload
 
     assert_redirected_to root_url
-    assert_equal thomas.confirmed?, true
+    assert_equal true, thomas.confirmed?
   end
 
   test "confirming with an expired token redirects to new confirmation page" do
@@ -22,7 +22,7 @@ class ConfirmationsControllerTest < ActionDispatch::IntegrationTest
     thomas.reload
 
     assert_redirected_to new_confirmation_url
-    assert_equal thomas.confirmed?, false
+    assert_equal false, thomas.confirmed?
   end
 
   test "confirming a confirmed user redirects to new confirmation page" do
@@ -33,7 +33,7 @@ class ConfirmationsControllerTest < ActionDispatch::IntegrationTest
     thomas.reload
 
     assert_redirected_to root_url
-    assert_equal thomas.confirmed?, true
+    assert_equal true, thomas.confirmed?
 
     confirmation_token = thomas.generate_confirmation_token
     get edit_confirmation_url(confirmation_token)

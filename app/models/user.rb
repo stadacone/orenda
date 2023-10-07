@@ -22,8 +22,9 @@ class User < ApplicationRecord
     end
 
     if unconfirmed_email.present?
-      update(confirmed_at: Time.current, email: unconfirmed_email, unconfirmed_email: nil)
+      update(email: unconfirmed_email, unconfirmed_email: nil)
     end
+    update_columns(confirmed_at: Time.current)
   end
 
   def confirmed?
