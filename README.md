@@ -1,5 +1,7 @@
 # orenda
 
+A quality-first link aggregator
+
 ## Setup
 
 Install [asdf](https://asdf-vm.com/). It should handle the setup of `ruby` and `bun` for the project.
