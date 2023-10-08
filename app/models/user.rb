@@ -17,14 +17,14 @@ class User < ApplicationRecord
   validates :unconfirmed_email, format: { with: URI::MailTo::EMAIL_REGEXP, allow_blank: true }
 
   def confirm!
-    if unconfirmed_or_reconfirming?
-      if unconfirmed_email.present?
-        return false unless update(email: unconfirmed_email, unconfirmed_email: nil)
-      end
-      update_columns(confirmed_at: Time.current)
-    else
-      false
+    if confirmed?
+      return false
     end
+
+    if unconfirmed_email.present?
+      update(email: unconfirmed_email, unconfirmed_email: nil)
+    end
+    update_columns(confirmed_at: Time.current)
   end
 
   def confirmed?
@@ -41,7 +41,7 @@ class User < ApplicationRecord
 
   def send_confirmation_email!
     confirmation_token = generate_confirmation_token
-    UserMailer.confirmation(self, confirmation_token).deliver_now
+    UserMailer.confirmation(self, confirmation_token).deliver_later
   end
 
   def confirmable_email
