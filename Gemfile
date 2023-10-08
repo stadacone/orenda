@@ -91,3 +91,5 @@ gem 'rubocop-capybara', '~> 2.19'
 gem "rubocop-discourse"
 
 gem 'obscenity'
+
+gem "tailwindcss-rails", "~> 2.0"
