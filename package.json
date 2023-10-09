@@ -1,11 +1,7 @@
 {
-  "name": "app",
-  "private": "true",
-  "scripts": {
-    "build": "bun bun.config.js"
-  },
+  "name": "orenda",
+  "version": "1.0.0",
   "dependencies": {
-    "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^7.3.0"
+    "local-time": "^2.1.0"
   }
 }

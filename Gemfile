@@ -92,4 +92,8 @@ gem "rubocop-discourse"
 
 gem 'obscenity'
 
+gem "local_time"
+
+gem "importmap-rails", "~> 1.2"
+
 gem "tailwindcss-rails", "~> 2.0"

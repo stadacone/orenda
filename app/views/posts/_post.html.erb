@@ -1,1 +1,4 @@
 <a href="<%= post.link %>"><%= post.title %></a>
+<div>
+  <small>Submitted <%= local_time_ago(post.created_at) %> by </small>
+</div>
