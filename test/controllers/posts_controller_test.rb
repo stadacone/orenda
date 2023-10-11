@@ -29,7 +29,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     get post_url(@post)
     assert_response :success
     assert_select "a", @post.title
-    assert_select "time", @post.created_at.strftime("%B %d, %Y %I:%M%P")
+    assert_select "time", @post.created_at.strftime("%B %d, %Y %l:%M%P")
   end
 
   test 'should get edit' do
