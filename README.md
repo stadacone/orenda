@@ -4,9 +4,9 @@ A quality-first link aggregator
 
 ## Setup
 
-Install [asdf](https://asdf-vm.com/). It should handle the setup of `ruby` and `bun` for the project.
+Install [asdf](https://asdf-vm.com/). It should handle the setup of `ruby` for the project.
 
-Run `bundle install` and `bun install` to install project dependencies.
+Run `bundle install` to install project dependencies.
 
 Run `rails db:migrate` to setup your database for development.
 
