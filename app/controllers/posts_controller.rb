@@ -3,7 +3,7 @@
 # A default link post to Orenda
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-
+  skip_before_action :require_login, only: [:show, :index]
   # GET /posts or /posts.json
   def index
     @posts = Post.all
@@ -67,6 +67,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :link)
+    params.require(:post).permit(:title, :link, current_user)
   end
 end
