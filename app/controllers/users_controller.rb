@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class UsersController < ApplicationController
-  before_action :redirect_if_authenticated, only: [:create, :new]
+  skip_before_action :require_login, only: [:create, :new]
   before_action :authenticate_user!, only: [:edit, :destroy, :update]
 
   def create

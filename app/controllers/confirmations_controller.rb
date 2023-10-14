@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 # app/controllers/confirmations_controller.rb
 class ConfirmationsController < ApplicationController
+  skip_before_action :require_login, only: [:create, :edit]
 
   def create
     @user = User.find_by(email: params[:user][:email].downcase)
