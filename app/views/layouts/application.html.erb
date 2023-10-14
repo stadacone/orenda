@@ -11,7 +11,7 @@
   <%= javascript_include_tag "/assets/application.js", "data-turbo-track": "reload", defer: true %>
 </head>
 
-<body class="min-h-full">
+<body class="h-screen flex flex-col justify-between gap-y-8">
 <header>
   <nav class="flex flex-row justify-end">
     <% if Current.user.present? %>
@@ -23,8 +23,8 @@
     <% end %>
   </nav>
 </header>
-<main>
-  <div class="flex flex-col items-center">
+<main class="flex flex-col">
+  <div class="flex flex-col items-center gap-y-8">
     <h1>Orenda</h1>
 
     <%= yield %>
