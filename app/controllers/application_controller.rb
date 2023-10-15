@@ -2,12 +2,12 @@
 
 class ApplicationController < ActionController::Base
   include Authentication
-  before_action :require_login
+  before_action :verify_permissions
 
-  def require_login
-    unless user_signed_in?
+  def verify_permissions
+    unless "#{controller_name}:#{action_name}".in? current_user&.permissions
       flash[:error] = "You must be logged in to access this section"
-      redirect_to sign_up_url # halts request cycle
+      redirect_to root_url
     end
   end
 end

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
-require 'obscenity/active_model'
+require "rails/all"
+require "obscenity/active_model"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

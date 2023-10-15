@@ -1,21 +1,24 @@
 # frozen_string_literal: true
+
 class User < ApplicationRecord
   CONFIRMATION_TOKEN_EXPIRATION = 10.minutes
   PASSWORD_RESET_TOKEN_EXPIRATION = 10.minutes
   MAILER_FROM_EMAIL = "no-reply@stadac.one"
 
   attr_accessor :current_password
+  attribute :permissions, :permission, array: true, default: %w[]
 
   has_secure_password
   has_many :active_sessions, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_and_belongs_to_many :permissions
 
   before_save :downcase_email
   before_save :downcase_unconfirmed_email
 
   validates :username, obscenity: true, presence: true, uniqueness: true
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true
-  validates :unconfirmed_email, format: { with: URI::MailTo::EMAIL_REGEXP, allow_blank: true }
+  validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true
+  validates :unconfirmed_email, format: {with: URI::MailTo::EMAIL_REGEXP, allow_blank: true}
 
   def confirm!
     if confirmed?
