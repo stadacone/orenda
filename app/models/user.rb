@@ -6,7 +6,6 @@ class User < ApplicationRecord
   MAILER_FROM_EMAIL = "no-reply@stadac.one"
 
   attr_accessor :current_password
-  attribute :permissions, :permission, array: true, default: %w[]
 
   has_secure_password
   has_many :active_sessions, dependent: :destroy
