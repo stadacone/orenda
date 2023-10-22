@@ -360,11 +360,8 @@ DEPENDENCIES
   importmap-rails (~> 1.2)
   jbuilder
   jsbundling-rails
-<<<<<<< Updated upstream
   local_time
-=======
   metainspector
->>>>>>> Stashed changes
   obscenity
   puma (>= 5.0)
   rails (~> 7.1.0.rc1)
