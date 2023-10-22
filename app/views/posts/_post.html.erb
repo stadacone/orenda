@@ -1,1 +1,5 @@
 <a href="<%= post.link %>"><%= post.title %></a>
+<div>
+  <!--  // TODO: mettre le nom du user ici-->
+  <small>Submitted <%= local_time_ago(post.created_at) %> by anonymous </small>
+</div>
