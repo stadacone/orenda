@@ -19,7 +19,7 @@
       <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
     <% else %>
       <%= link_to "Sign in", login_path, class: "dark:text-white" %>
-      <%= link_to "Sign up", sign_up_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm w-sm px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+      <%= link_to "Sign up", sign_up_path, class: "pill-button-primary w-sm px-3 py-1 " %>
     <% end %>
   </nav>
 </header>

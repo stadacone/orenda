@@ -4,9 +4,9 @@
   <div class="flex flex-col gap-y-8">
     <div class="flex flex-col gap-y-4">
 
-      <div class="rounded-md shadow-sm -space-y-px">
-        <%= form.text_field :username, placeholder: :username, required: true, class: "top-joined-input block w-full px-3 py-2" %>
-        <%= form.password_field :password, placeholder: :password, required: true, class: "bottom-joined-input block w-full px-3 py-2" %>
+      <div class="rounded-md shadow-sm joined-input-container">
+        <%= form.text_field :username, placeholder: :username, required: true, class: "top-joined-input w-full px-3 py-2" %>
+        <%= form.password_field :password, placeholder: :password, required: true, class: "bottom-joined-input w-full px-3 py-2" %>
       </div>
 
       <%= form.label :remember_me, class: "dark:text-white pl-1 flex items-center gap-x-2" do %>
@@ -15,5 +15,5 @@
       <% end %>
     </div>
   </div>
-  <%= form.submit "Sign In", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+  <%= form.submit "Sign In", class: "button-primary w-full sm:w-auto px-5 py-2.5" %>
 <% end %>
