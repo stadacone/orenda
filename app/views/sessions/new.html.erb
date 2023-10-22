@@ -3,7 +3,6 @@
 <%= form_with url: login_path, class: "centered-form-layout", scope: :user do |form| %>
   <div class="flex flex-col gap-y-8">
     <div class="flex flex-col gap-y-4">
-
       <div class="rounded-md shadow-sm joined-input-container">
         <%= form.text_field :username, placeholder: :username, required: true, class: "top-joined-input w-full px-3 py-2" %>
         <%= form.password_field :password, placeholder: :password, required: true, class: "bottom-joined-input w-full px-3 py-2" %>
@@ -15,5 +14,5 @@
       <% end %>
     </div>
   </div>
-  <%= form.submit "Sign In", class: "button-primary w-full sm:w-auto px-5 py-2.5" %>
+  <%= form.submit "Sign in", class: "button-primary w-full sm:w-auto px-5 py-2.5" %>
 <% end %>
