@@ -13,20 +13,21 @@
 
 <body class="h-screen flex flex-col justify-between gap-y-8 p-4 dark:bg-black">
 <header>
-  <nav class="flex flex-row justify-end items-center gap-x-2">
-    <% if Current.user.present? %>
-      <%= link_to "Account", account_path %>
-      <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
-    <% else %>
-      <%= link_to "Sign in", login_path, class: "dark:text-white" %>
-      <%= link_to "Sign up", sign_up_path, class: "pill-button-primary w-sm px-3 py-1 " %>
-    <% end %>
+  <nav class="flex flex-row justify-between items-center gap-x-2">
+    <h1 class="dark:text-white">Orenda</h1>
+    <div>
+      <% if Current.user.present? %>
+        <%= link_to "Account", account_path %>
+        <%= link_to "Sign out", logout_path, data: { turbo_method: :delete } %>
+      <% else %>
+        <%= link_to "Sign in", login_path, class: "dark:text-white text-sm font-medium" %>
+        <%= link_to "Sign up", sign_up_path, class: "pill-button-primary w-sm px-3 py-1 " %>
+      <% end %>
+    </div>
   </nav>
 </header>
 <main class="flex flex-col">
-  <div class="flex flex-col items-center gap-y-8">
-    <h1 class="dark:text-white">Orenda</h1>
-
+  <div class="flex flex-col items-center">
     <%= yield %>
   </div>
 </main>
