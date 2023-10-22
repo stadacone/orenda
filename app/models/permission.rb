@@ -2,15 +2,15 @@
 
 class Permission < ApplicationRecord
   has_and_belongs_to_many :users
-end
 
-class PermissionType < ActiveRecord::Type::Text
-  def cast(value)
+  def self.parse(value)
     parts = value.split(":")
     unless parts.count == 2
-      super
+      raise
     end
     # Check permission can exist (find corresponding controller and action)
-    Permission.new(resource: parts[0], action: parts[1])
+    if Permission.find_by(resource: parts[0], action: parts[1]).present?
+
+    end
   end
 end

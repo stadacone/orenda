@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_and_belongs_to_many :permissions
 
+  after_initialize :set_permissions
   before_save :downcase_email
   before_save :downcase_unconfirmed_email
 
@@ -81,5 +82,12 @@ class User < ApplicationRecord
   def downcase_unconfirmed_email
     return if unconfirmed_email.nil?
     self.unconfirmed_email = unconfirmed_email.downcase
+  end
+
+  def set_permissions
+    unless persisted?
+      base = %w[posts:index posts:show users:new users:create sessions:new sessions:create]
+      self.permissions = base.map { |x| Permission.parse(x) }
+    end
   end
 end
