@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Orenda</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Orenda</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "/assets/application.js", "data-turbo-track": "reload", defer: true %>
-  </head>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "/assets/application.js", "data-turbo-track": "reload", defer: true %>
+</head>
 
-  <body>
-    <header>
-      <nav>
-        <% if Current.user.present? %>
-          <%= link_to "Account", account_path %>
-          <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
-        <% else %>
-          <%= link_to "Login", login_path %>
-          <%= link_to "Sign up", sign_up_path %>
-        <% end %>
-        <h2>Orenda</h2>
-      </nav>
-    </header>
-    <main>
-      <%= yield %>
-    </main>
-    <footer>Made in QC with ❤</footer>
-  </body>
+<body class="h-screen flex flex-col justify-between gap-y-8 p-4 dark:bg-black">
+<header>
+  <nav class="flex flex-row justify-end items-center gap-x-2">
+    <% if Current.user.present? %>
+      <%= link_to "Account", account_path %>
+      <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
+    <% else %>
+      <%= link_to "Sign in", login_path, class: "dark:text-white" %>
+      <%= link_to "Sign up", sign_up_path, class: "pill-button-primary w-sm px-3 py-1 " %>
+    <% end %>
+  </nav>
+</header>
+<main class="flex flex-col">
+  <div class="flex flex-col items-center gap-y-8">
+    <h1 class="dark:text-white">Orenda</h1>
+
+    <%= yield %>
+  </div>
+</main>
+<footer>
+  <div class="flex justify-center">
+    <p>Made in QC with ❤</p>
+  </div>
+</footer>
+</body>
 </html>

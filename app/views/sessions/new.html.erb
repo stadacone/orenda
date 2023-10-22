@@ -1,21 +1,16 @@
-<p style="color: red"><%= alert %></p>
+<%= form_with url: login_path, class: "centered-form-layout", scope: :user do |form| %>
+  <div class="flex flex-col gap-y-8">
+    <div class="flex flex-col gap-y-4">
+      <div class="rounded-md shadow-sm joined-input-container">
+        <%= form.text_field :username, placeholder: :username, required: true, class: "top-joined-input w-full px-3 py-2" %>
+        <%= form.password_field :password, placeholder: :password, required: true, class: "bottom-joined-input w-full px-3 py-2" %>
+      </div>
 
-<%= form_with url: login_path, scope: :user do |form| %>
-  <div class="grid">
-    <div>
-      <%= form.label :username %>
-      <%= form.text_field :username, required: true %>
-    </div>
-    <div>
-      <%= form.label :password %>
-      <%= form.password_field :password, required: true %>
+      <%= form.label :remember_me, class: "dark:text-white pl-1 flex items-center gap-x-2" do %>
+        <%= form.check_box :remember_me, class: "rounded w-4 h-4 border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" %>
+        Remember me
+      <% end %>
     </div>
   </div>
-  <div>
-    <%= form.label :remember_me do %>
-      <%= form.check_box :remember_me %>
-      Remember me
-    <% end %>
-  </div>
-  <%= form.submit "Sign In" %>
+  <%= form.submit "Sign in", class: "button-primary w-full sm:w-auto px-5 py-2.5" %>
 <% end %>
