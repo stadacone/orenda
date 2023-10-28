@@ -1,14 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Posts</h1>
-
-<div id="posts", class="dark:text-white">
+<div id="posts" class="dark:text-white flex flex-col gap-y-3">
   <% @posts.each do |post| %>
     <%= render post %>
-
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
   <% end %>
 </div>
 
