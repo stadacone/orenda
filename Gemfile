@@ -92,7 +92,6 @@ gem "rubocop-capybara", "~> 2.19"
 
 gem "local_time"
 
-
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "obscenity"

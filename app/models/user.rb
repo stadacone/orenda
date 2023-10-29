@@ -88,18 +88,18 @@ class User < ApplicationRecord
   # @note could also refactor to fetch base permissions from resources who expose them instead of breaking OCP. Works for our need for now.
   def check_permissions
     base = [
-        Permission.find_or_create_by(resource: "posts", action: "index"),
-        Permission.find_or_create_by(resource: "posts", action: "show"),
-        Permission.find_or_create_by(resource: "posts", action: "new"),
-        Permission.find_or_create_by(resource: "posts", action: "create"),
-        Permission.find_or_create_by(resource: "users", action: "new"),
-        Permission.find_or_create_by(resource: "users", action: "create"),
-        Permission.find_or_create_by(resource: "users", action: "update"),
-        Permission.find_or_create_by(resource: "users", action: "edit"),
-        Permission.find_or_create_by(resource: "sessions", action: "new"),
-        Permission.find_or_create_by(resource: "sessions", action: "create"),
-        Permission.find_or_create_by(resource: "sessions", action: "destroy")
-      ]
+      Permission.find_or_create_by(resource: "posts", action: "index"),
+      Permission.find_or_create_by(resource: "posts", action: "show"),
+      Permission.find_or_create_by(resource: "posts", action: "new"),
+      Permission.find_or_create_by(resource: "posts", action: "create"),
+      Permission.find_or_create_by(resource: "users", action: "new"),
+      Permission.find_or_create_by(resource: "users", action: "create"),
+      Permission.find_or_create_by(resource: "users", action: "update"),
+      Permission.find_or_create_by(resource: "users", action: "edit"),
+      Permission.find_or_create_by(resource: "sessions", action: "new"),
+      Permission.find_or_create_by(resource: "sessions", action: "create"),
+      Permission.find_or_create_by(resource: "sessions", action: "destroy")
+    ]
 
     base.each do |permission|
       unless permission.in? permissions
