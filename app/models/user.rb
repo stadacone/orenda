@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_and_belongs_to_many :permissions
 
-  after_initialize :set_permissions
+  after_initialize :check_permissions
   before_save :downcase_email
   before_save :downcase_unconfirmed_email
 
@@ -84,10 +84,27 @@ class User < ApplicationRecord
     self.unconfirmed_email = unconfirmed_email.downcase
   end
 
-  def set_permissions
-    unless persisted?
-      base = %w[posts:index posts:show users:new users:create sessions:new sessions:create]
-      self.permissions = base.map { |x| Permission.parse(x) }
+  # @note performance could and should probably be improved. Naive approach used, but functional
+  # @note could also refactor to fetch base permissions from resources who expose them instead of breaking OCP. Works for our need for now.
+  def check_permissions
+    base = [
+        Permission.find_or_create_by(resource: "posts", action: "index"),
+        Permission.find_or_create_by(resource: "posts", action: "show"),
+        Permission.find_or_create_by(resource: "posts", action: "new"),
+        Permission.find_or_create_by(resource: "posts", action: "create"),
+        Permission.find_or_create_by(resource: "users", action: "new"),
+        Permission.find_or_create_by(resource: "users", action: "create"),
+        Permission.find_or_create_by(resource: "users", action: "update"),
+        Permission.find_or_create_by(resource: "users", action: "edit"),
+        Permission.find_or_create_by(resource: "sessions", action: "new"),
+        Permission.find_or_create_by(resource: "sessions", action: "create"),
+        Permission.find_or_create_by(resource: "sessions", action: "destroy")
+      ]
+
+    base.each do |permission|
+      unless permission.in? permissions
+        permissions.push(permission)
+      end
     end
   end
 end

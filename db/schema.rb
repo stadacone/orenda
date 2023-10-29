@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_21_124630) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_28_011559) do
   create_table "active_sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_21_124630) do
     t.string "action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["action", "resource"], name: "index_permissions_on_action_and_resource", unique: true
   end
 
   create_table "permissions_users", id: false, force: :cascade do |t|
