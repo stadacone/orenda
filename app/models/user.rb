@@ -92,13 +92,19 @@ class User < ApplicationRecord
       Permission.find_or_create_by(resource: "posts", action: "show"),
       Permission.find_or_create_by(resource: "posts", action: "new"),
       Permission.find_or_create_by(resource: "posts", action: "create"),
+      Permission.find_or_create_by(resource: "posts", action: "update"),
+      Permission.find_or_create_by(resource: "posts", action: "edit"),
+      Permission.find_or_create_by(resource: "posts", action: "destroy"),
       Permission.find_or_create_by(resource: "users", action: "new"),
       Permission.find_or_create_by(resource: "users", action: "create"),
       Permission.find_or_create_by(resource: "users", action: "update"),
       Permission.find_or_create_by(resource: "users", action: "edit"),
       Permission.find_or_create_by(resource: "sessions", action: "new"),
       Permission.find_or_create_by(resource: "sessions", action: "create"),
-      Permission.find_or_create_by(resource: "sessions", action: "destroy")
+      Permission.find_or_create_by(resource: "sessions", action: "destroy"),
+      Permission.find_or_create_by(resource: "confirmations", action: "new"),
+      Permission.find_or_create_by(resource: "confirmations", action: "create"),
+      Permission.find_or_create_by(resource: "confirmations", action: "edit"),
     ]
 
     base.each do |permission|

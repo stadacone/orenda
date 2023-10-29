@@ -27,7 +27,7 @@ module Authentication
     active_session.destroy! if active_session.present?
   end
 
-  def remember(user)
+  def remember(active_session)
     cookies.permanent.encrypted[:remember_token] = active_session.remember_token
   end
 

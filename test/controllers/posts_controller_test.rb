@@ -5,6 +5,8 @@ require "test_helper"
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post = posts(:one)
+    thomas = users(:thomas)
+    post login_path, params: {user: {username: thomas.username, password: "testpassword"}}
   end
 
   test "should get index" do
