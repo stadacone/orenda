@@ -1,16 +1,23 @@
-<%= link_to post do %>
-  <div class="dark:hover:bg-gray-900 hover:bg-gray-100 rounded-md px-4 py-3 cursor-pointer">
-    <div class="flex flex-col gap-y-1">
-      <a href="<%= post.link %>" class="hover:underline underline-offset-2">
-        <%= post.title %>
-      </a>
-      <img src="<%= post.image %>" alt="bro">
+<%= button_to post, :method => :get, class: "w-full" do %>
+  <div class="flex justify-between dark:hover:bg-gray-900 dark:text-white hover:bg-gray-100 rounded-3xl p-4 cursor-pointer">
+    <div class="flex gap-x-4 text-start">
+      <% if post.image != nil %>
+        <img src="<%= post.image %>" alt="thumbnail" class="object-cover rounded-2xl w-[100px] h-[100px]">
+      <% else %>
+        <%= image_tag "surprised_pikachu.png", class: "object-cover rounded-2xl w-[100px] h-[100px]" %>
+      <% end %>
 
-      <small><%= post.description %></small>
-    </div>
-    <div>
-      <!--  // TODO: mettre le nom du user ici -->
-      <small>Submitted <%= local_time_ago(post.created_at) %> by anonymous </small>
+      <div class="flex flex-col justify-between gap-y-1">
+        <div class="flex flex-col gap-y-1">
+          <a href="<%= post.link %>" class="hover:underline underline-offset-2">
+            <%= post.title %>
+          </a>
+
+          <small class="dark:text-white"><%= post.description %></small>
+        </div>
+
+        <small class="dark:text-white whitespace-nowrap"><%= local_time_ago(post.created_at) %></small>
+      </div>
     </div>
   </div>
 <% end %>
