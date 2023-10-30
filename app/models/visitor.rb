@@ -8,7 +8,7 @@ class Visitor
       Permission.find_or_create_by(resource: "users", action: "new"),
       Permission.find_or_create_by(resource: "users", action: "create"),
       Permission.find_or_create_by(resource: "sessions", action: "new"),
-      Permission.find_or_create_by(resource: "sessions", action: "create"),
+      Permission.find_or_create_by(resource: "sessions", action: "create")
     ]
   end
 end
