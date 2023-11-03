@@ -1,38 +1,17 @@
 require "test_helper"
 
 class VisitorTest < ActiveSupport::TestCase
-  test "visitors can load all posts" do
-    visitor = Visitor.new
-    assert_includes visitor.permissions, permissions(:posts_index)
+  [:posts_index, :posts_show].each do |permission|
+    test "visitors have the #{permission} permission" do
+      visitor = Visitor.new
+      assert_includes visitor.permissions, permissions(permission)
+    end
   end
 
-  test "visitors can read a post" do
-    visitor = Visitor.new
-    assert_includes visitor.permissions, permissions(:posts_show)
-  end
-
-  test "visitors cannot instantiate a post" do
-    visitor = Visitor.new
-    refute_includes visitor.permissions, permissions(:posts_new)
-  end
-
-  test "visitors cannot create a post" do
-    visitor = Visitor.new
-    refute_includes visitor.permissions, permissions(:posts_create)
-  end
-
-  test "visitors cannot edit a post" do
-    visitor = Visitor.new
-    refute_includes visitor.permissions, permissions(:posts_edit)
-  end
-
-  test "visitors cannot update a post" do
-    visitor = Visitor.new
-    refute_includes visitor.permissions, permissions(:posts_update)
-  end
-
-  test "visitors cannot destroy a post" do
-    visitor = Visitor.new
-    refute_includes visitor.permissions, permissions(:posts_destroy)
+  [:posts_new, :posts_create, :posts_edit, :posts_update, :posts_destroy].each do |permission|
+    test "visitors don't have the #{permission} permission" do
+      visitor = Visitor.new
+      refute_includes visitor.permissions, permissions(permission)
+    end
   end
 end
