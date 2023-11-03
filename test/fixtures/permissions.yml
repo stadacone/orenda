@@ -1,0 +1,27 @@
+posts_index:
+  resource: posts
+  action: index
+
+posts_show:
+  resource: posts
+  action: show
+
+posts_create:
+  resource: posts
+  action: create
+
+posts_new:
+  resource: posts
+  action: new
+
+posts_edit:
+  resource: posts
+  action: edit
+
+posts_update:
+  resource: posts
+  action: update
+
+posts_destroy:
+  resource: posts
+  action: destroy

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
+
 # app/controllers/confirmations_controller.rb
 class ConfirmationsController < ApplicationController
+  skip_before_action :verify_permissions
 
   def create
     @user = User.find_by(email: params[:user][:email].downcase)
@@ -32,5 +34,4 @@ class ConfirmationsController < ApplicationController
   def new
     @user = User.new
   end
-
 end
