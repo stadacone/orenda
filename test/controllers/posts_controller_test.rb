@@ -20,7 +20,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create post" do
-    assert_difference("Post.count") do
+    assert_difference("Post.count", 1) do
       post posts_url, params: {post: {link: @post.link, title: @post.title}}
     end
 
@@ -31,7 +31,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     get post_url(@post)
     assert_response :success
     assert_select "a", @post.title
-    assert_select "time", @post.created_at.strftime("%B %d, %Y %l:%M%P")
+    assert_select "time", @post.created_at.strftime("%B %e, %Y %l:%M%P")
   end
 
   test "should get edit" do
