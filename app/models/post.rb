@@ -4,8 +4,9 @@ class Post < ApplicationRecord
   before_save :get_post_metadata
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
-  validates :link, format: {with: URI::DEFAULT_PARSER.make_regexp}
+  validates :link, format: { with: URI::DEFAULT_PARSER.make_regexp }
 
   def get_post_metadata
     page = MetaInspector.new(link)

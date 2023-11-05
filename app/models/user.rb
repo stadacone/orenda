@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :active_sessions, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_and_belongs_to_many :permissions
 
@@ -18,8 +19,8 @@ class User < ApplicationRecord
   before_save :downcase_unconfirmed_email
 
   validates :username, obscenity: true, presence: true, uniqueness: true
-  validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true
-  validates :unconfirmed_email, format: {with: URI::MailTo::EMAIL_REGEXP, allow_blank: true}
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true
+  validates :unconfirmed_email, format: { with: URI::MailTo::EMAIL_REGEXP, allow_blank: true }
 
   def confirm!
     if confirmed?
