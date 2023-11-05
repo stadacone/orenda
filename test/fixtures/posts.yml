@@ -5,9 +5,11 @@ one:
   link: https://example.com/
   description: A Description
   image_source: https://an-image.source
+  user: tristan
 
 two:
   title: Another Title
   link: https://another-example.com/
   description: Another Description
   image_source: https://another-image.source
+  user: thomas
