@@ -3,7 +3,11 @@
 one:
   title: MyString
   link: MyText
+  description: ADescription
+  image_source: https://an-image.source
 
 two:
-  title: MyString
-  link: MyText
+  title: MyOtherString
+  link: MyOtherText
+  description: ADescription
+  image_source: https://another-image.source

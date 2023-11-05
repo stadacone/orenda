@@ -10,10 +10,7 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1 or /posts/1.json
-  def show
-    page = MetaInspector.new(@post.link)
-    @post.image = page.images.best
-  end
+  def show; end
 
   # GET /posts/new
   def new

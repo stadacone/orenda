@@ -1,11 +1,17 @@
 <%= button_to post, :method => :get, class: "w-full" do %>
-  <div class="flex justify-between dark:hover:bg-gray-900 dark:text-white hover:bg-gray-100 rounded-3xl p-4 cursor-pointer h-40">
+  <div class="group flex justify-between dark:hover:bg-gray-900 dark:text-white hover:bg-gray-100 rounded-3xl p-4 pb-2 cursor-pointer h-44">
     <div class="flex gap-x-4 text-start">
-      <% if post.image != nil %>
-        <img src="<%= post.image %>" alt="thumbnail" class="object-cover rounded-2xl w-32 h-auto">
-      <% else %>
-        <%= image_tag "surprised_pikachu.png", class: "object-cover rounded-2xl w-32 h-auto" %>
-      <% end %>
+      <div class="flex flex-col gap-y-1 items-center">
+        <% if post.image_source != nil %>
+          <img src="<%= post.image_source %>" alt="thumbnail" class="object-cover rounded-2xl w-32 h-full max-w-none">
+        <% else %>
+          <%= image_tag "surprised_pikachu.png", class: "object-cover rounded-2xl w-32 h-full max-w-none" %>
+        <% end %>
+
+        <small class="whitespace-nowrap group-hover:text-slate-500 text-transparent">
+          <%= local_time_ago(post.created_at) %>
+        </small>
+      </div>
 
       <div class="flex flex-col gap-y-4">
         <div class="flex flex-col gap-y-1">
@@ -17,8 +23,6 @@
             <%= post.description %>
           </small>
         </div>
-
-        <small class="whitespace-nowrap text-slate-500"><%= local_time_ago(post.created_at) %></small>
       </div>
     </div>
   </div>
