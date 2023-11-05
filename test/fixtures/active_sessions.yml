@@ -1,1 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+current:
+  user: thomas
+  remember_token: 1234567890

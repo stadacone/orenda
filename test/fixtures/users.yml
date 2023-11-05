@@ -3,6 +3,10 @@
 thomas:
   username: Kawemi
   email: thomas.girard@hey.com
+  password_digest: <%= BCrypt::Password.create('testpassword') %>
+  confirmed_at: <%= Time.now %>
+  permissions: [posts_index, posts_show, posts_create, posts_new, posts_update, posts_edit, posts_destroy]
 
 tristan:
   username: Mihijito
+  permissions: [posts_index, posts_show, posts_create, posts_new, posts_update, posts_edit, posts_destroy]

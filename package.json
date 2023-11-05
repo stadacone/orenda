@@ -1,7 +1,0 @@
-{
-  "name": "orenda",
-  "version": "1.0.0",
-  "dependencies": {
-    "local-time": "^2.1.0"
-  }
-}

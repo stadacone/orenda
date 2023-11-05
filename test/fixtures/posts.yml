@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  link: MyText
-  description: ADescription
+  title: A Title
+  link: https://example.com/
+  description: A Description
   image_source: https://an-image.source
 
 two:
-  title: MyOtherString
-  link: MyOtherText
-  description: ADescription
+  title: Another Title
+  link: https://another-example.com/
+  description: Another Description
   image_source: https://another-image.source

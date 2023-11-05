@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "test_helper"
 
 class UserMailerTest < ActionMailer::TestCase
@@ -18,5 +19,4 @@ class UserMailerTest < ActionMailer::TestCase
       assert_select "a", "Click here to confirm your email."
     end
   end
-
 end
