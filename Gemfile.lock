@@ -156,6 +156,10 @@ GEM
     jsbundling-rails (1.2.1)
       railties (>= 6.0.0)
     json (2.6.3)
+    kredis (1.6.0)
+      activemodel (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      redis (>= 4.2, < 6)
     language_server-protocol (3.17.0.3)
     lint_roller (1.1.0)
     local_time (2.1.0)
@@ -364,6 +368,7 @@ DEPENDENCIES
   importmap-rails (~> 1.2)
   jbuilder
   jsbundling-rails
+  kredis
   local_time
   metainspector
   obscenity
