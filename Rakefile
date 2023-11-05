@@ -4,7 +4,10 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require_relative "config/application"
-require "standard/rake"
+
+unless Rails.env == "production"
+  require "standard/rake"
+end
 
 Rails.application.load_tasks
 Rake::Task["javascript:build"].clear
