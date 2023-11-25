@@ -1,11 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: First Title
+  title: A Title
   link: https://example.com/
-  user: thomas
+  description: A Description
+  image_source: https://an-image.source
+  user: tristan
 
 two:
-  title: Second Title
-  link: https://example.com/
+  title: Another Title
+  link: https://another-example.com/
+  description: Another Description
+  image_source: https://another-image.source
   user: thomas
