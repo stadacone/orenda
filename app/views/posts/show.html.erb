@@ -11,3 +11,10 @@
     </div>
   <% end %>
 </div>
+
+<div>
+  <%= render 'comments/form', post: @post %>
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', post: @post, comment: comment %>
+  <% end %>
+</div>
