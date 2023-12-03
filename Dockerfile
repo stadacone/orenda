@@ -1,8 +1,29 @@
 # syntax = docker/dockerfile:1
 
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+# Base image for building shared stuff between dev and prod
 ARG RUBY_VERSION=3.2.2
 FROM ruby:$RUBY_VERSION-slim as base
+
+# Update gems and bundler
+RUN gem update --system --no-document && \
+    gem install -N bundler
+
+FROM base as dev
+
+# Install packages needed to build gems
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential pkg-config
+
+# Install gem dependices in container
+COPY --link Gemfile Gemfile.lock ./
+RUN bundle install
+
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+CMD ["./bin/rails", "server"]
+
+# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+FROM base as prod
 
 LABEL fly_launch_runtime="rails"
 
@@ -14,13 +35,9 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development:test" \
     BUNDLE_DEPLOYMENT="1"
 
-# Update gems and bundler
-RUN gem update --system --no-document && \
-    gem install -N bundler
-
 
 # Throw-away build stage to reduce size of final image
-FROM base as build
+FROM prod as build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
@@ -43,7 +60,7 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
 # Final stage for app image
-FROM base
+FROM prod
 
 # Install, configure litefs
 COPY --from=flyio/litefs:0.4.0 /usr/local/bin/litefs /usr/local/bin/litefs
