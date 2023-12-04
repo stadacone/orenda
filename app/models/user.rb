@@ -98,6 +98,7 @@ class User < ApplicationRecord
       Permission.find_or_create_by(resource: "posts", action: "edit"),
       Permission.find_or_create_by(resource: "posts", action: "upvote"),
       Permission.find_or_create_by(resource: "posts", action: "downvote"),
+      Permission.find_or_create_by(resource: "posts", action: "unvote"),
       Permission.find_or_create_by(resource: "posts", action: "destroy"),
       Permission.find_or_create_by(resource: "users", action: "new"),
       Permission.find_or_create_by(resource: "users", action: "create"),

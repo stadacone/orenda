@@ -10,13 +10,33 @@ class Post < ApplicationRecord
   validates :link, format: { with: URI::DEFAULT_PARSER.make_regexp }
 
   def upvote(user)
+    if downvoted_by? user
+      vote = Vote.find_by(user: user, post: self)
+      vote.destroy!
+    end
     votes.new(post: self, user: user, value: 1)
-    votes_tally.increment
   end
 
   def downvote(user)
+    if upvoted_by? user
+      vote = Vote.find_by(user: user, post: self)
+      vote.destroy!
+    end
     votes.new(post: self, user: user, value: -1)
-    votes_tally.decrement
+  end
+
+  def unvote(user)
+    Vote.find_by(user: user, post: self)&.destroy!
+  end
+
+  def upvoted_by?(user)
+    vote = Vote.find_by(user: user, post: self)
+    vote.present? && vote.is_upvote?
+  end
+
+  def downvoted_by?(user)
+    vote = Vote.find_by(user: user, post: self)
+    vote.present? && vote.is_downvote?
   end
 
   private

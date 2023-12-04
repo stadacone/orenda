@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy upvote downvote]
+  before_action :set_post, except: [:index, :create]
   skip_before_action :verify_permissions, only: [:show, :index]
   # GET /posts or /posts.json
   def index
@@ -29,6 +29,11 @@ class PostsController < ApplicationController
 
   def downvote
     @post.downvote(current_user)
+    @post.save
+  end
+
+  def unvote
+    @post.unvote(current_user)
     @post.save
   end
 

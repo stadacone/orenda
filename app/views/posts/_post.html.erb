@@ -1,5 +1,9 @@
 <%= turbo_frame_tag post do %>
-  <%= button_to "Upvote", upvote_post_path(post.id), method: :patch %>
+  <% if post.upvoted_by? current_user %>
+    <%= button_to "Unvote", unvote_post_path(post.id), method: :patch %>
+  <% else %>
+    <%= button_to "Upvote", upvote_post_path(post.id), method: :patch %>
+  <% end %>
   <%= turbo_frame_tag "#{dom_id(post)}_tally" do %>
     <%= post.votes_tally.value %>
   <% end %>
