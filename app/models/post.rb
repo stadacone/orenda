@@ -5,9 +5,21 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
-  kredis_integer :votes_tally, default: 0
+  kredis_counter :votes_tally
 
   validates :link, format: { with: URI::DEFAULT_PARSER.make_regexp }
+
+  def upvote(user)
+    votes.new(post: self, user: user, value: 1)
+    votes_tally.increment
+  end
+
+  def downvote(user)
+    votes.new(post: self, user: user, value: -1)
+    votes_tally.decrement
+  end
+
+  private
 
   def get_post_metadata
     page = MetaInspector.new(link)
