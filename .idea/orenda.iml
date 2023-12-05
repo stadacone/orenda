@@ -177,6 +177,7 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="rails_live_reload:install" />
         <option value="resource" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
@@ -211,6 +212,7 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="rails_live_reload:install" />
         <option value="resource" />
         <option value="scaffold" />
         <option value="scaffold_controller" />

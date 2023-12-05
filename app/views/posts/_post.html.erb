@@ -1,44 +1,38 @@
 <%= turbo_frame_tag post do %>
-  <% if post.upvoted_by? current_user %>
-    <%= button_to "Unvote", unvote_post_path(post.id), method: :patch %>
-  <% else %>
-    <%= button_to "Upvote", upvote_post_path(post.id), method: :patch %>
-  <% end %>
-  <%= turbo_frame_tag "#{dom_id(post)}_tally" do %>
-    <%= post.votes_tally.value %>
-  <% end %>
-  <%= button_to "Downvote", downvote_post_path(post.id), method: :patch %>
-  <%= button_to post, method: :get, class: "w-full" do %>
-    <div class="group flex justify-between dark:hover:bg-gray-900 dark:text-white hover:bg-gray-100 rounded-3xl p-4 pb-2 pr-6 cursor-pointer h-44">
-      <div class="flex gap-x-4 text-start">
-        <div class="flex flex-col gap-y-1 items-center">
-          <% if post.image_source != nil %>
-            <img src="<%= post.image_source %>" alt="post <%= post.id %>" class="object-cover rounded-2xl w-32 h-full max-w-none">
-          <% else %>
-            <div class="object-cover rounded-2xl text-slate-500 bg-slate-100 dark:bg-slate-700 group-hover:bg-white dark:group-hover:bg-slate-700">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-12 -12 48 48" stroke-width="1.5" stroke="currentColor" class="w-32 h-32">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-              </svg>
-            </div>
-          <% end %>
+  <div class="flex items-center">
+    <%= render partial: "votes", object: post, as: "post" %>
+    <%= button_to post, method: :get, class: "w-full" do %>
+      <div class="group flex justify-between dark:hover:bg-gray-900 dark:text-white hover:bg-gray-100 rounded-3xl p-4 pb-2 pr-6 cursor-pointer h-44">
+        <div class="flex gap-x-4 text-start">
+          <div class="flex flex-col gap-y-1 items-center">
+            <% if post.image_source != nil %>
+              <img src="<%= post.image_source %>" alt="post <%= post.id %>" class="object-cover rounded-2xl w-32 h-full max-w-none">
+            <% else %>
+              <div class="object-cover rounded-2xl text-slate-500 bg-slate-100 dark:bg-slate-700 group-hover:bg-white dark:group-hover:bg-slate-700">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-12 -12 48 48" stroke-width="1.5" stroke="currentColor" class="w-32 h-32">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+              </div>
+            <% end %>
 
-          <small class="whitespace-nowrap group-hover:text-slate-500 text-transparent">
-            <%= local_time_ago(post.created_at) %>
-          </small>
-        </div>
-
-        <div class="flex flex-col gap-y-4 mt-2">
-          <div class="flex flex-col gap-y-1">
-            <a href="<%= post.link %>" class="hover:underline underline-offset-2 font-medium text-lg">
-              <%= post.title %>
-            </a>
-
-            <small class="dark:text-white max-h-20 text-ellipsis text-justify overflow-hidden ">
-              <%= post.description %>
+            <small class="whitespace-nowrap group-hover:text-slate-500 text-transparent">
+              <%= local_time_ago(post.created_at) %>
             </small>
+          </div>
+
+          <div class="flex flex-col gap-y-4 mt-2">
+            <div class="flex flex-col gap-y-1">
+              <a href="<%= post.link %>" class="hover:underline underline-offset-2 font-medium text-lg">
+                <%= post.title %>
+              </a>
+
+              <small class="dark:text-white max-h-20 text-ellipsis text-justify overflow-hidden ">
+                <%= post.description %>
+              </small>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 <% end %>
