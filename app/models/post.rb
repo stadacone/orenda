@@ -39,6 +39,22 @@ class Post < ApplicationRecord
     vote.present? && vote.is_downvote?
   end
 
+  def tally(vote)
+    if vote.is_upvote?
+      votes_tally.increment
+    elsif vote.is_downvote?
+      votes_tally.decrement
+    end
+  end
+
+  def untally(vote)
+    if vote.is_upvote?
+      votes_tally.decrement
+    elsif vote.is_downvote?
+      votes_tally.increment
+    end
+  end
+
   private
 
   def get_post_metadata

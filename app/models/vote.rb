@@ -15,18 +15,10 @@ class Vote < ApplicationRecord
   private
 
   def tally
-    if is_upvote?
-      post.votes_tally.increment
-    elsif is_downvote?
-      post.votes_tally.decrement
-    end
+    post.tally self
   end
 
   def untally
-    if is_upvote?
-      post.votes_tally.decrement
-    elsif is_downvote?
-      post.votes_tally.increment
-    end
+    post.untally self
   end
 end
