@@ -1,8 +1,6 @@
 class Vote < ApplicationRecord
   belongs_to :post
   belongs_to :user
-  after_create :tally
-  before_destroy :untally
 
   def is_upvote?
     value >= 1
@@ -12,13 +10,11 @@ class Vote < ApplicationRecord
     value <= -1
   end
 
-  private
-
-  def tally
-    post.tally self
+  def self.upvote(user, post)
+    Vote.new(user: user, post: post, value: 1)
   end
 
-  def untally
-    post.untally self
+  def self.downvote(user, post)
+    Vote.new(user: user, post: post, value: -1)
   end
 end

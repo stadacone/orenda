@@ -34,7 +34,7 @@ class PostTest < ActiveSupport::TestCase
 
     assert post.downvoted_by? first_user
     assert post.downvoted_by? second_user
-    assert_equal post.votes_tally.value, -2
+    assert_equal post.votes_tally, -2
   end
 
   test "a user can unvote a post" do
@@ -47,6 +47,6 @@ class PostTest < ActiveSupport::TestCase
     post.save
 
     assert !post.downvoted_by?(user)
-    assert_equal post.votes_tally.value, 0
+    assert_equal post.votes_tally, 0
   end
 end

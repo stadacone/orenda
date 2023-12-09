@@ -14,7 +14,7 @@ class Post < ApplicationRecord
       vote = Vote.find_by(user: user, post: self)
       vote.destroy!
     end
-    votes.new(post: self, user: user, value: 1)
+    votes << Vote.upvote(user, self)
   end
 
   def downvote(user)
@@ -22,7 +22,7 @@ class Post < ApplicationRecord
       vote = Vote.find_by(user: user, post: self)
       vote.destroy!
     end
-    votes.new(post: self, user: user, value: -1)
+    votes << Vote.downvote(user, self)
   end
 
   def unvote(user)
@@ -39,20 +39,8 @@ class Post < ApplicationRecord
     vote.present? && vote.is_downvote?
   end
 
-  def tally(vote)
-    if vote.is_upvote?
-      votes_tally.increment
-    elsif vote.is_downvote?
-      votes_tally.decrement
-    end
-  end
-
-  def untally(vote)
-    if vote.is_upvote?
-      votes_tally.decrement
-    elsif vote.is_downvote?
-      votes_tally.increment
-    end
+  def votes_tally
+    votes.sum(:value)
   end
 
   private

@@ -20,19 +20,4 @@ class VoteTest < ActiveSupport::TestCase
 
     assert vote.is_downvote?
   end
-
-  test "a vote tallies itself on its post's tally upon creation" do
-    post = posts(:unvoted)
-    vote = Vote.create(post: post, user: users(:thomas), value: 1)
-
-    assert_equal post.votes_tally.value, vote.value
-  end
-
-  test "a vote un-tallies itself on its post's tally upon destruction" do
-    post = posts(:unvoted)
-    vote = Vote.create(post: post, user: users(:thomas), value: -1)
-    vote.destroy!
-
-    assert_equal post.votes_tally.value, 0
-  end
 end
