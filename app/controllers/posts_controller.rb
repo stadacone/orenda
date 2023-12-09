@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, except: [:index, :create]
+  before_action :set_post, except: [:index, :create, :new]
   skip_before_action :verify_permissions, only: [:show, :index]
   # GET /posts or /posts.json
   def index
