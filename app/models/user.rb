@@ -106,7 +106,8 @@ class User < ApplicationRecord
       Permission.find_or_create_by(resource: "confirmations", action: "new"),
       Permission.find_or_create_by(resource: "confirmations", action: "create"),
       Permission.find_or_create_by(resource: "confirmations", action: "edit"),
-      Permission.find_or_create_by(resource: "comments", action: "create")
+      Permission.find_or_create_by(resource: "comments", action: "create"),
+      Permission.find_or_create_by(resource: "comments", action: "destroy")
     ]
 
     base.each do |permission|
