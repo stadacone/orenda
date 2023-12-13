@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :active_sessions, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_and_belongs_to_many :permissions
 
   after_initialize :check_permissions
@@ -104,7 +105,9 @@ class User < ApplicationRecord
       Permission.find_or_create_by(resource: "sessions", action: "destroy"),
       Permission.find_or_create_by(resource: "confirmations", action: "new"),
       Permission.find_or_create_by(resource: "confirmations", action: "create"),
-      Permission.find_or_create_by(resource: "confirmations", action: "edit")
+      Permission.find_or_create_by(resource: "confirmations", action: "edit"),
+      Permission.find_or_create_by(resource: "comments", action: "create"),
+      Permission.find_or_create_by(resource: "comments", action: "destroy")
     ]
 
     base.each do |permission|

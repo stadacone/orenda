@@ -11,3 +11,12 @@
     </div>
   <% end %>
 </div>
+
+<div>
+  <%= render 'comments/form', post: @post %>
+  <div class="flex flex-col gap-y-4">
+    <% @comments.each do |comment| %>
+      <%= render 'comments/comment', post: @post, comment: comment %>
+    <% end %>
+  </div>
+</div>

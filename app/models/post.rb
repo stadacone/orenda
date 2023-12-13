@@ -3,6 +3,7 @@
 class Post < ApplicationRecord
   before_save :get_post_metadata
   belongs_to :user
+  has_many :comments, dependent: :destroy
 
   validates :link, format: {with: URI::DEFAULT_PARSER.make_regexp}
 
