@@ -1,9 +1,8 @@
 <%= form_with(model: [post, post.comments.build]) do |form| %>
   <div class="flex flex-col items-center gap-y-2 items-start">
-    <label class="self-start">Your message</label>
     <div>
-      <%= form.rich_text_area :body, class: "w-full p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      <%= form.rich_text_area :body, class: "w-full p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:stroke-white dark:border-gray-600 dark:placeholder-grey-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: 'Post your reply' %>
     </div>
-      <%= form.submit 'Reply', class: "button-primary" %>
+    <%= form.submit 'Reply', class: "button-primary" %>
   </div>
 <% end %>
