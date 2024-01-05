@@ -14,7 +14,9 @@
 <body class="h-screen flex flex-col justify-between gap-y-8 p-4 dark:bg-black">
 <header>
   <nav class="flex flex-row justify-between items-center gap-x-2">
-    <h1 class="dark:text-white">Orenda</h1>
+    <h1 class="dark:text-white">
+      <%= link_to "Orenda", root_path, class: "icon-button-primary" %>
+    </h1>
     <div class="flex justify-center items-center dark:text-white">
       <% if user_signed_in? %>
         <%= link_to account_path, class: "icon-button-primary" do %>
