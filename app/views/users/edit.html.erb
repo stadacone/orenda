@@ -1,7 +1,7 @@
 <%= form_with model: @user, url: account_path, method: :put, class: "flex flex-col gap-y-4 centered-form-layout" do |form| %>
   <%= render partial: "shared/form_errors", locals: { object: form.object } %>
 
-  <%= form.label :email, "Update profile", class: "text-2xl font-extrabold mb-2" %>
+  <%= form.label :email, "Update profile", class: "text-2xl font-extrabold mb-2 dark:text-white" %>
 
   <div class="joined-input-container flex flex-col">
     <%= form.email_field :email, disabled: true, placeholder: "Current Email", class: "top-joined-input" %>
@@ -19,7 +19,7 @@
   <%= form.submit "Update Account", class: "button-primary" %>
 <% end %>
 
-<div class="flex items-center gap-x-2 mt-8">
+<div class="flex items-center gap-x-2 mt-8 dark:text-white">
   <h2>Current Logins</h2>
   <% if @active_sessions.any? %>
     <%= button_to "Log out of all other sessions", destroy_all_active_sessions_path, method: :delete, class: "pill-button-primary" %>
@@ -27,7 +27,7 @@
 </div>
 
 <% if @active_sessions.any? %>
-  <table>
+  <table class="dark:text-white">
     <thead>
     <tr>
       <th>User Agent</th>
