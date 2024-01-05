@@ -1,31 +1,32 @@
-<%= form_with model: @user, url: account_path, method: :put do |form| %>
+<%= form_with model: @user, url: account_path, method: :put, class: "flex flex-col gap-y-4 centered-form-layout" do |form| %>
   <%= render partial: "shared/form_errors", locals: { object: form.object } %>
-  <div>
-    <%= form.label :email, "Current Email" %>
-    <%= form.email_field :email, disabled: true %>
+
+  <%= form.label :email, "Update profile", class: "text-2xl font-extrabold mb-2" %>
+
+  <div class="joined-input-container flex flex-col">
+    <%= form.email_field :email, disabled: true, placeholder: "Current Email", class: "top-joined-input" %>
+    <%= form.text_field :unconfirmed_email, placeholder: "New Email", class: "bottom-joined-input" %>
   </div>
-  <div>
-    <%= form.label :unconfirmed_email, "New Email" %>
-    <%= form.text_field :unconfirmed_email %>
-  </div>
-  <div>
-    <%= form.label :password, "Password (leave blank if you don't want to change it)" %>
-    <%= form.password_field :password %>
-  </div>
-  <div>
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-  </div>
+
   <hr/>
-  <div>
-    <%= form.label :current_password, "Current password (we need your current password to confirm your changes)" %>
-    <%= form.password_field :current_password, required: true %>
+
+  <%= form.password_field :current_password, required: true, placeholder: "Current password", class: "primary-input" %>
+
+  <div class="joined-input-container flex flex-col">
+    <%= form.password_field :password, placeholder: "New password (leave blank if you don't want to change it)", class: "top-joined-input" %>
+    <%= form.password_field :password_confirmation, placeholder: "New password confirmation", class: "bottom-joined-input" %>
   </div>
-  <%= form.submit "Update Account" %>
+  <%= form.submit "Update Account", class: "button-primary" %>
 <% end %>
-<h2>Current Logins</h2>
+
+<div class="flex items-center gap-x-2 mt-8">
+  <h2>Current Logins</h2>
+  <% if @active_sessions.any? %>
+    <%= button_to "Log out of all other sessions", destroy_all_active_sessions_path, method: :delete, class: "pill-button-primary" %>
+  <% end %>
+</div>
+
 <% if @active_sessions.any? %>
-  <%= button_to "Log out of all other sessions", destroy_all_active_sessions_path, method: :delete %>
   <table>
     <thead>
     <tr>
