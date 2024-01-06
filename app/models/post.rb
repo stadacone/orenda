@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :delete_all
 
-  validates :link, format: { with: URI::DEFAULT_PARSER.make_regexp }
+  validates :link, format: {with: URI::DEFAULT_PARSER.make_regexp}
 
   def upvote(user)
     if downvoted_by? user
