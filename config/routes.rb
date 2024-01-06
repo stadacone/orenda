@@ -15,6 +15,11 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments
+    member do
+      patch "upvote"
+      patch "downvote"
+      patch "unvote"
+    end
   end
   resources :confirmations, only: [:create, :edit, :new], param: :confirmation_token
   resources :passwords, only: [:create, :edit, :new, :update], param: :password_reset_token

@@ -13,3 +13,10 @@ two:
   description: Another Description
   image_source: https://another-image.source
   user: thomas
+
+unvoted:
+  title: Another Title
+  link: https://another-example.com/
+  description: Another Description
+  image_source: https://another-image.source
+  user: thomas
