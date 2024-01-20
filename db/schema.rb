@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_03_174942) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_19_121500) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_03_174942) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "parent_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -96,6 +97,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_03_174942) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "posts_votes", id: false, force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "vote_id", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.datetime "created_at", null: false
@@ -106,10 +112,27 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_03_174942) do
     t.string "unconfirmed_email"
   end
 
+  create_table "users_votes", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "vote_id", null: false
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_votes_on_post_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
   add_foreign_key "active_sessions", "users", on_delete: :cascade
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "votes", "posts"
+  add_foreign_key "votes", "users"
 end

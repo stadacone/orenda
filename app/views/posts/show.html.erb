@@ -13,7 +13,7 @@
 </div>
 
 <div>
-  <%= render 'comments/form', post: @post %>
+  <%= render 'comments/form', post: @post, comment: nil %>
   <div class="flex flex-col gap-y-4">
     <% @comments.each do |comment| %>
       <%= render 'comments/comment', post: @post, comment: comment %>
