@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :active_sessions, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_and_belongs_to_many :permissions
 
@@ -95,6 +96,9 @@ class User < ApplicationRecord
       Permission.find_or_create_by(resource: "posts", action: "create"),
       Permission.find_or_create_by(resource: "posts", action: "update"),
       Permission.find_or_create_by(resource: "posts", action: "edit"),
+      Permission.find_or_create_by(resource: "posts", action: "upvote"),
+      Permission.find_or_create_by(resource: "posts", action: "downvote"),
+      Permission.find_or_create_by(resource: "posts", action: "unvote"),
       Permission.find_or_create_by(resource: "posts", action: "destroy"),
       Permission.find_or_create_by(resource: "users", action: "new"),
       Permission.find_or_create_by(resource: "users", action: "create"),

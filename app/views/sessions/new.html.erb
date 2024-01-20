@@ -10,6 +10,9 @@
         <%= form.check_box :remember_me, class: "rounded w-4 h-4 border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" %>
         Remember me
       <% end %>
+      <% if flash.alert %>
+        <div class="text-red-500"><%= flash.alert %></div>
+      <% end %>
     </div>
   </div>
   <%= form.submit "Sign in", class: "button-primary w-full sm:w-auto" %>
