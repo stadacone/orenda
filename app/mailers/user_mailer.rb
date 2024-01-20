@@ -9,7 +9,6 @@ class UserMailer < ApplicationMailer
 
     mail to: @user.confirmable_email,
       subject: "Confirmation Instructions",
-      track_opens: "true",
       message_stream: "outbound"
   end
 
@@ -19,7 +18,6 @@ class UserMailer < ApplicationMailer
 
     mail to: @user.email,
       subject: "Password Reset Instructions",
-      track_opens: "true",
       message_stream: "outbound"
   end
 end
