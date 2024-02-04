@@ -18,14 +18,14 @@
       </div>
 
       <div class="flex flex-col gap-y-4 mt-2">
-        <div class="flex flex-col gap-y-1">
-          <a href="<%= post.link %>" class="hover:underline underline-offset-2 font-semibold text-xl">
+        <small class="flex flex-col gap-y-1">
+          <a href="<%= post.link %>" class="hover:underline underline-offset-2 font-medium text-lg">
             <%= post.title %>
           </a>
 
-          <div class="dark:text-white max-h-20 text-ellipsis text-justify overflow-hidden text-md">
+          <small class="dark:text-white max-h-20 text-ellipsis text-justify overflow-hidden ">
             <%= post.description %>
-          </div>
+          </small>
         </div>
       </div>
     </div>
