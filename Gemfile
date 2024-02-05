@@ -48,6 +48,7 @@ gem "bootsnap", require: false
 # https://github.com/jaimeiniesta/metainspector#metainspector
 gem "metainspector"
 
+gem "inline_svg"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
@@ -89,6 +90,8 @@ group :development do
   # gem "spring"
 
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+
+  gem "rails_live_reload"
 end
 
 group :test do
