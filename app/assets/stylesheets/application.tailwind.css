@@ -7,6 +7,10 @@
         @apply flex flex-col gap-y-8 md:w-3/5 lg:w-1/3 w-10/12
     }
 
+    .centered-content-layout {
+        @apply flex flex-col gap-y-8 md:w-3/5 lg:w-2/3 w-full
+    }
+
     .joined-input-container {
         @apply -space-y-px
     }
@@ -19,12 +23,24 @@
         @apply appearance-none rounded-none relative  border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
     }
 
+    .primary-input {
+        @apply border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+    }
+
     .button-primary {
         @apply px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
     }
 
     .pill-button-primary {
         @apply px-5 py-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+    }
+
+    .pill-button-secondary {
+        @apply dark:hover:bg-gray-800 dark:text-white hover:bg-gray-100 rounded-full py-1 px-4
+    }
+
+    .icon-button-primary {
+        @apply dark:hover:bg-gray-800 dark:text-white hover:bg-gray-100 rounded-full p-2
     }
 
     .threadLine {
