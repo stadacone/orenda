@@ -1,7 +1,9 @@
-<div class="flex items-center">
-  <%= render partial: "votes", object: post, as: "post" %>
-  <%= button_to post, method: :get, class: "w-full" do %>
-    <div class="group flex justify-between dark:hover:bg-gray-900 dark:text-white hover:bg-gray-100 rounded-3xl p-4 pb-2 pr-6 cursor-pointer h-44">
+<div class="group flex items-center dark:hover:bg-gray-900 dark:text-white hover:bg-gray-100 rounded-3xl cursor-pointer h-44">
+  <div class="invisible group-hover:visible pl-2">
+    <%= render partial: "votes", object: post, as: "post" %>
+  </div>
+  <%= button_to post, method: :get, class: "flex grow" do %>
+    <div class="flex justify-between pt-4 pb-2 pr-6 pl-1 h-44">
       <div class="flex gap-x-4 text-start">
         <div class="flex flex-col gap-y-1 items-center">
           <% if post.image_source != nil %>
@@ -19,13 +21,13 @@
           </small>
         </div>
 
-        <div class="flex flex-col gap-y-4 mt-2">
-          <div class="flex flex-col gap-y-1">
-            <a href="<%= post.link %>" class="hover:underline underline-offset-2 font-medium text-lg">
+        <div class="flex flex-col gap-y-4 mt-1">
+          <div class="flex flex-col gap-y-1 h-[85%]">
+            <a href="<%= post.link %>" class="hover:underline underline-offset-2 font-semibold text-xl max-h-[1.75rem] line-clamp-1">
               <%= post.title %>
             </a>
 
-            <small class="dark:text-white max-h-20 text-ellipsis text-justify overflow-hidden ">
+            <small class="dark:text-white text-ellipsis text-justify overflow-hidden text-base max-h-[6rem]">
               <%= post.description %>
             </small>
           </div>
